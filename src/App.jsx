@@ -11,22 +11,22 @@ import './App.css'
 
 
 function App() {
-  const logoRef = useRef();
+  // const logoRef = useRef();
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    ScrollTrigger.create({
-      animation: gsap.from(logoRef.current, {
-        y: "50vh",
-        scale: 6,
-        yPercent: -50,
-      }),
-      scrub: true,
-      trigger: logoRef.current,
-      start: "top bottom",
-      end: "top center",
-    });
-  }, []);
+  // useEffect(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
+  //   ScrollTrigger.create({
+  //     animation: gsap.from(logoRef.current, {
+  //       y: "50vh",
+  //       scale: 6,
+  //       yPercent: -50,
+  //     }),
+  //     scrub: true,
+  //     trigger: logoRef.current,
+  //     start: "top bottom",
+  //     end: "top center",
+  //   });
+  // }, []);
 
   return (
     <BrowserRouter>
