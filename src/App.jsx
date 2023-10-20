@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import Homepage from './pages/homepage'
-import Application from './pages/Application'
+import ApiTester from "./pages/ApiTester";
 import Footer from './components/Footer'
 import Header from './components/Header'
 import './App.css'
@@ -31,14 +31,15 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <div className="logo-container-header">
-        <h1 className="main-logo" ref={logoRef} key={logoRef.current}>
+      {/* <div className="logo-container-header">
+        <h1 className="main-logo">
+        ref={logoRef} key={logoRef.current}
           FETCH
         </h1>
-        </div>
+        </div> */}
       <Routes>
         <Route path="/" element={<Homepage />} />
-        <Route path="/application" element={<Application />} />
+        <Route path="/apitester" element={<ApiTester/>} />
         <Route path="*" element={<Homepage />} />
         </Routes>
       <Footer/>
