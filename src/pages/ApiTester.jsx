@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
-import Fetch from '../components/fetch';
-import Axios from '../components/Axios';
-import Query from '../components/Query';
+import { useState } from 'react'
+import FetchForm from '../components/FetchForm';
 
 function ApiTester() {
   const [apiCheckMethod, setApiCheckMethod] = useState('fetch');
 
-  const handleButtonClick = (methord) => {
-    setApiCheckMethod(methord)
+  const handleButtonClick = (method) => {
+    setApiCheckMethod(method)
   }
   return (
     <div>
@@ -17,9 +15,7 @@ function ApiTester() {
         <button onClick={() => handleButtonClick('query')}>Query</button>
       </div>
       <div className="api-check-method-container">
-        {apiCheckMethod === 'fetch' && <Fetch />}
-        {apiCheckMethod === 'axios' && <Axios />}
-        {apiCheckMethod === 'query' && <Query />}
+        <FetchForm selectedMethod={apiCheckMethod} /> 
       </div>
     </div>
   )
