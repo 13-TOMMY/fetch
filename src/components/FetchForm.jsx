@@ -4,7 +4,7 @@ import Axios from "./Axios";
 import Query from "./Query";
 
 function FetchForm({ selectedMethod }) {
-  // const = useState();
+  // form input
   const [httpMethod, setHttpMethod] = useState("GET");
   const [endpoint, setEndpoint] = useState("");
   const [authenticationType, SetAuthenticationType] = useState("");
@@ -31,10 +31,7 @@ function FetchForm({ selectedMethod }) {
     setRequestBody(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
+  //clear form, no auto clear so that you see the data you passed
   const handleClear = () => {
     setHttpMethod("GET");
     setEndpoint("");
@@ -89,18 +86,17 @@ function FetchForm({ selectedMethod }) {
           <label htmlFor="request-body">Request Body:</label>
           <textarea name="request-body" id="request-body" value={requestBody} onChange={handleRequestBody} placeholder="Enter the request body" cols="30" rows="10"/>
         </div>
-        <div className="submit-btn-container"><button type="submit" onClick={handleSubmit}>Make Request</button></div>
         <div className="clear-btn-container"><button type="clear" onClick={handleClear}>Clear</button></div>
       </div>
       <div className="fetch-method-container">
         {selectedMethod === "fetch" && (
-          <Fetch endpoint={endpoint} httpMethod={httpMethod} />
+          <Fetch endpoint={endpoint} httpMethod={httpMethod} authenticationType={authenticationType} authenticationCredentials={authenticationCredentials} requestBody={requestBody}/>
         )}
         {selectedMethod === "axios" && (
-          <Axios endpoint={endpoint} httpMethod={httpMethod} />
+          <Axios endpoint={endpoint} httpMethod={httpMethod} authenticationType={authenticationType} authenticationCredentials={authenticationCredentials} requestBody={requestBody}/>
         )}
         {selectedMethod === "query" && (
-          <Query endpoint={endpoint} httpMethod={httpMethod} />
+          <Query endpoint={endpoint} httpMethod={httpMethod} authenticationType={authenticationType} authenticationCredentials={authenticationCredentials} requestBody={requestBody}/>
         )}
       </div>
     </div>
