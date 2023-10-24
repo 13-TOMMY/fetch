@@ -7,6 +7,9 @@ function FetchForm({ selectedMethod }) {
   // const = useState();
   const [httpMethod, setHttpMethod] = useState("GET");
   const [endpoint, setEndpoint] = useState("");
+  const [authenticationType, SetAuthenticationType] = useState("");
+  const [authenticationCredentials, SetAuthenticationCredentials] = useState("");
+  const [requestBody, setRequestBody] = useState("");
 
   const handleHttpMethod = (e) => {
     setHttpMethod(e.target.value);
@@ -15,6 +18,30 @@ function FetchForm({ selectedMethod }) {
   const handleEndpoint = (e) => {
     setEndpoint(e.target.value);
   };
+
+  const handleAuthenticationType = (e) => {
+    SetAuthenticationType(e.target.value);
+  };
+
+  const handleAuthenticationCredentials = (e) => {
+    SetAuthenticationCredentials(e.target.value);
+  };
+
+  const handleRequestBody = (e) => {
+    setRequestBody(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const handleClear = () => {
+    setHttpMethod("GET");
+    setEndpoint("");
+    SetAuthenticationType("");
+    SetAuthenticationCredentials("");
+    setRequestBody("");
+  }
 
   return (
     <div className="fetch-form-container">
@@ -45,6 +72,25 @@ function FetchForm({ selectedMethod }) {
             placeholder="Enter the API endpoint URL"
           />
         </div>
+        <div className="authentication-container">
+          <label htmlFor="authentication-type"> authentication Type:</label>
+          <select name="" id="authentication-type" defaultValue="" value={authenticationType} onChange={handleAuthenticationType}>
+            <option value="">None</option>
+            <option value="basic">Basic</option>
+            <option value="oauth">OAuth</option>
+            <option value="bearer">Bearer Token</option>
+          </select>
+          <label htmlFor="authentication-credentials">
+          Authentication Credentials:
+          </label>
+          <input type="text" id="authentication-credentials" name="authentication-credentials" value={authenticationCredentials} onChange={handleAuthenticationCredentials} placeholder="Enter the authentication credentials!" />
+        </div>
+        <div className="request-body-container">
+          <label htmlFor="request-body">Request Body:</label>
+          <textarea name="request-body" id="request-body" value={requestBody} onChange={handleRequestBody} placeholder="Enter the request body" cols="30" rows="10"/>
+        </div>
+        <div className="submit-btn-container"><button type="submit" onClick={handleSubmit}>Make Request</button></div>
+        <div className="clear-btn-container"><button type="clear" onClick={handleClear}>Clear</button></div>
       </div>
       <div className="fetch-method-container">
         {selectedMethod === "fetch" && (
