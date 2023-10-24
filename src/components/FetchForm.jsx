@@ -8,7 +8,8 @@ function FetchForm({ selectedMethod }) {
   const [httpMethod, setHttpMethod] = useState("GET");
   const [endpoint, setEndpoint] = useState("");
   const [authenticationType, SetAuthenticationType] = useState("");
-  const [authenticationCredentials, SetAuthenticationCredentials] = useState("");
+  const [authenticationCredentials, SetAuthenticationCredentials] =
+    useState("");
   const [requestBody, setRequestBody] = useState("");
 
   const handleHttpMethod = (e) => {
@@ -16,6 +17,7 @@ function FetchForm({ selectedMethod }) {
   };
 
   const handleEndpoint = (e) => {
+    e.preventDefault();
     setEndpoint(e.target.value);
   };
 
@@ -24,7 +26,7 @@ function FetchForm({ selectedMethod }) {
   };
 
   const handleAuthenticationCredentials = (e) => {
-    SetAuthenticationCredentials(e.target.value);
+    SetAuthenticationCredentials(e.target.value.trim());
   };
 
   const handleRequestBody = (e) => {
@@ -38,7 +40,7 @@ function FetchForm({ selectedMethod }) {
     SetAuthenticationType("");
     SetAuthenticationCredentials("");
     setRequestBody("");
-  }
+  };
 
   return (
     <div className="fetch-form-container">
@@ -71,32 +73,75 @@ function FetchForm({ selectedMethod }) {
         </div>
         <div className="authentication-container">
           <label htmlFor="authentication-type"> authentication Type:</label>
-          <select name="" id="authentication-type" defaultValue="" value={authenticationType} onChange={handleAuthenticationType}>
+          <select
+            name=""
+            id="authentication-type"
+            defaultValue=""
+            value={authenticationType}
+            onChange={handleAuthenticationType}
+          >
             <option value="">None</option>
             <option value="basic">Basic</option>
             <option value="oauth">OAuth</option>
             <option value="bearer">Bearer Token</option>
           </select>
           <label htmlFor="authentication-credentials">
-          Authentication Credentials:
+            Authentication Credentials:
           </label>
-          <input type="text" id="authentication-credentials" name="authentication-credentials" value={authenticationCredentials} onChange={handleAuthenticationCredentials} placeholder="Enter the authentication credentials!" />
+          <input
+            type="text"
+            id="authentication-credentials"
+            name="authentication-credentials"
+            value={authenticationCredentials}
+            onChange={handleAuthenticationCredentials}
+            placeholder="Enter the authentication credentials!"
+          />
         </div>
         <div className="request-body-container">
           <label htmlFor="request-body">Request Body:</label>
-          <textarea name="request-body" id="request-body" value={requestBody} onChange={handleRequestBody} placeholder="Enter the request body" cols="30" rows="10"/>
+          <textarea
+            name="request-body"
+            id="request-body"
+            value={requestBody}
+            onChange={handleRequestBody}
+            placeholder="Enter the request body"
+            cols="30"
+            rows="10"
+          />
         </div>
-        <div className="clear-btn-container"><button type="clear" onClick={handleClear}>Clear</button></div>
+        <div className="clear-btn-container">
+          <button type="clear" onClick={handleClear}>
+            Clear
+          </button>
+        </div>
       </div>
       <div className="fetch-method-container">
         {selectedMethod === "fetch" && (
-          <Fetch endpoint={endpoint} httpMethod={httpMethod} authenticationType={authenticationType} authenticationCredentials={authenticationCredentials} requestBody={requestBody}/>
+          <Fetch
+            endpoint={endpoint}
+            httpMethod={httpMethod}
+            authenticationType={authenticationType}
+            authenticationCredentials={authenticationCredentials}
+            requestBody={requestBody}
+          />
         )}
         {selectedMethod === "axios" && (
-          <Axios endpoint={endpoint} httpMethod={httpMethod} authenticationType={authenticationType} authenticationCredentials={authenticationCredentials} requestBody={requestBody}/>
+          <Axios
+            endpoint={endpoint}
+            httpMethod={httpMethod}
+            authenticationType={authenticationType}
+            authenticationCredentials={authenticationCredentials}
+            requestBody={requestBody}
+          />
         )}
         {selectedMethod === "query" && (
-          <Query endpoint={endpoint} httpMethod={httpMethod} authenticationType={authenticationType} authenticationCredentials={authenticationCredentials} requestBody={requestBody}/>
+          <Query
+            endpoint={endpoint}
+            httpMethod={httpMethod}
+            authenticationType={authenticationType}
+            authenticationCredentials={authenticationCredentials}
+            requestBody={requestBody}
+          />
         )}
       </div>
     </div>

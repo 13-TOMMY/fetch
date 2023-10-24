@@ -6,6 +6,7 @@ function Query() {
   };
   return (
     <div>
+      query
       <div className="submit-btn-container">
         <button type="submit" onClick={handleSubmit}>
           Make Request
