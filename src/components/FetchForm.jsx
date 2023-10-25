@@ -12,27 +12,6 @@ function FetchForm({ selectedMethod }) {
     useState("");
   const [requestBody, setRequestBody] = useState("");
 
-  const handleHttpMethod = (e) => {
-    setHttpMethod(e.target.value);
-  };
-
-  const handleEndpoint = (e) => {
-    e.preventDefault();
-    setEndpoint(e.target.value);
-  };
-
-  const handleAuthenticationType = (e) => {
-    SetAuthenticationType(e.target.value);
-  };
-
-  const handleAuthenticationCredentials = (e) => {
-    SetAuthenticationCredentials(e.target.value.trim());
-  };
-
-  const handleRequestBody = (e) => {
-    setRequestBody(e.target.value);
-  };
-
   //clear form, no auto clear so that you see the data you passed
   const handleClear = () => {
     setHttpMethod("GET");
@@ -52,7 +31,7 @@ function FetchForm({ selectedMethod }) {
             className="http-methods"
             defaultValue="GET"
             value={httpMethod}
-            onChange={handleHttpMethod}
+            onChange={(e) => setHttpMethod(e.target.value)}
           >
             <option value="GET">GET</option>
             <option value="PUT">PUT</option>
@@ -67,7 +46,7 @@ function FetchForm({ selectedMethod }) {
             id="endpoint"
             name="endpoint"
             value={endpoint}
-            onChange={handleEndpoint}
+            onChange={(e) => setEndpoint(e.target.value)}
             placeholder="Enter the API endpoint URL"
           />
         </div>
@@ -78,7 +57,7 @@ function FetchForm({ selectedMethod }) {
             id="authentication-type"
             defaultValue=""
             value={authenticationType}
-            onChange={handleAuthenticationType}
+            onChange={(e) => SetAuthenticationType(e.target.value)}
           >
             <option value="">None</option>
             <option value="basic">Basic</option>
@@ -93,7 +72,7 @@ function FetchForm({ selectedMethod }) {
             id="authentication-credentials"
             name="authentication-credentials"
             value={authenticationCredentials}
-            onChange={handleAuthenticationCredentials}
+            onChange={(e) => SetAuthenticationCredentials(e.target.value)}
             placeholder="Enter the authentication credentials!"
           />
         </div>
@@ -103,7 +82,7 @@ function FetchForm({ selectedMethod }) {
             name="request-body"
             id="request-body"
             value={requestBody}
-            onChange={handleRequestBody}
+            onChange={(e) => setRequestBody(e.target.value)}
             placeholder="Enter the request body"
             cols="30"
             rows="10"
