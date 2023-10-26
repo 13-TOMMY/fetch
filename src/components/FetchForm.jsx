@@ -11,6 +11,8 @@ function FetchForm({ selectedMethod }) {
   const [authenticationCredentials, SetAuthenticationCredentials] =
     useState("");
   const [requestBody, setRequestBody] = useState("");
+  //btn data
+  const [apiData, setApiData] = useState(null);
 
   //clear form, no auto clear so that you see the data you passed
   const handleClear = () => {
@@ -19,6 +21,17 @@ function FetchForm({ selectedMethod }) {
     SetAuthenticationType("");
     SetAuthenticationCredentials("");
     setRequestBody("");
+  };
+
+  const handleApiCall = () => {
+    const data = {
+      httpMethod,
+      endpoint,
+      authenticationType,
+      authenticationCredentials,
+      requestBody,
+    };
+    setApiData(data);
   };
 
   return (
@@ -90,6 +103,7 @@ function FetchForm({ selectedMethod }) {
         </div>
         <div className="clear-btn-container">
           <button type="clear" onClick={handleClear}>
+          <button onClick={handleApiCall}>Fetch</button>
             Clear
           </button>
         </div>
@@ -97,29 +111,17 @@ function FetchForm({ selectedMethod }) {
       <div className="fetch-method-container">
         {selectedMethod === "fetch" && (
           <Fetch
-            endpoint={endpoint}
-            httpMethod={httpMethod}
-            authenticationType={authenticationType}
-            authenticationCredentials={authenticationCredentials}
-            requestBody={requestBody}
+            apiData={apiData}
           />
         )}
         {selectedMethod === "axios" && (
           <Axios
-            endpoint={endpoint}
-            httpMethod={httpMethod}
-            authenticationType={authenticationType}
-            authenticationCredentials={authenticationCredentials}
-            requestBody={requestBody}
+          apiData={apiData}
           />
         )}
         {selectedMethod === "query" && (
           <Query
-            endpoint={endpoint}
-            httpMethod={httpMethod}
-            authenticationType={authenticationType}
-            authenticationCredentials={authenticationCredentials}
-            requestBody={requestBody}
+          apiData={apiData}
           />
         )}
       </div>

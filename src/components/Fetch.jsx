@@ -7,11 +7,7 @@ function Fetch() {
   return (
     <div>
       Fetch
-      <div className="submit-btn-container">
-        <button type="submit" onClick={handleSubmit}>
-          Make Request
-        </button>
-      </div>
+    
     </div>
   );
 }
