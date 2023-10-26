@@ -103,27 +103,15 @@ function FetchForm({ selectedMethod }) {
         </div>
         <div className="clear-btn-container">
           <button type="clear" onClick={handleClear}>
-          <button onClick={handleApiCall}>Fetch</button>
             Clear
           </button>
+          <button onClick={handleApiCall}>Fetch</button>
         </div>
       </div>
       <div className="fetch-method-container">
-        {selectedMethod === "fetch" && (
-          <Fetch
-            apiData={apiData}
-          />
-        )}
-        {selectedMethod === "axios" && (
-          <Axios
-          apiData={apiData}
-          />
-        )}
-        {selectedMethod === "query" && (
-          <Query
-          apiData={apiData}
-          />
-        )}
+        {selectedMethod === "fetch" && <Fetch apiData={apiData} />}
+        {selectedMethod === "axios" && <Axios apiData={apiData} />}
+        {selectedMethod === "query" && <Query apiData={apiData} />}
       </div>
     </div>
   );

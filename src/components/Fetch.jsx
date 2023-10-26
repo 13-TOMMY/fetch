@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-function Fetch() {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+function Fetch({ apiData }) {
+  const [response, setResponse] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (apiData) {
+      setLoading(true);
+      setError(null);
+    }
+    const url = apiData.endpoint;
+
+  }, [apiData]);
   return (
     <div>
-      Fetch
-    
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      {response && {}}
     </div>
   );
 }
