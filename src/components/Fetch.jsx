@@ -12,6 +12,30 @@ function Fetch({ apiData }) {
     }
     const url = apiData.endpoint;
 
+    const options = {
+      method: apiData.httpMethod,
+      headers: {
+        Authorization: `Basic ${btoa(apiData.authenticationCredentials)}`,
+      },
+      body: apiData.requestBody,
+    };
+
+    fetch(url, options)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP Error: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setResponse(data);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+    })
   }, [apiData]);
   return (
     <div>
