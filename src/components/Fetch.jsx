@@ -41,7 +41,7 @@ function Fetch({ apiData }) {
     <div>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      {response && {}}
+      {response && response !== null && {}}
     </div>
   );
 }

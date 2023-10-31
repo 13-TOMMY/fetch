@@ -27,8 +27,7 @@ function Footer() {
         <div className="contacts-left">
           <h3>Keep in touch</h3>
           <p>
-            Curious about new offerings? <br /> Sign up for our weekly
-            newsletter and stay informed.
+            Curious about what is next? 
           </p>
           <input
             type="email"
