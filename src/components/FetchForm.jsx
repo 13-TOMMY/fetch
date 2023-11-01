@@ -11,6 +11,11 @@ function FetchForm({ selectedMethod }) {
   const [authenticationCredentials, SetAuthenticationCredentials] =
     useState("");
   const [requestBody, setRequestBody] = useState("");
+
+  //Toggle optional components
+  const [showAuthentication, setShowAuthentication] = useState(false);
+  const [showRequestBody, setShowRequestBody] = useState(false);
+
   //btn data
   const [apiData, setApiData] = useState(null);
 
@@ -27,9 +32,11 @@ function FetchForm({ selectedMethod }) {
     const data = {
       httpMethod,
       endpoint,
-      authenticationType,
-      authenticationCredentials,
-      requestBody,
+      ...(showAuthentication && {
+        authenticationType,
+        authenticationCredentials,
+      }),
+      ...(showRequestBody && { requestBody }),
     };
     setApiData(data);
   };
@@ -63,7 +70,15 @@ function FetchForm({ selectedMethod }) {
             placeholder="Enter the API endpoint URL"
           />
         </div>
-        <div className="authentication-container">
+        <div className="toggle-components">
+          <button onClick={() => setShowAuthentication(!showAuthentication)}>
+            Toggle Authentication
+          </button>
+          <button onClick={() => setShowRequestBody(!showRequestBody)}>
+            Toggle Request Body
+          </button>
+        </div>
+        {showAuthentication && (<div className="authentication-container">
           <label htmlFor="authentication-type"> authentication Type:</label>
           <select
             name=""
@@ -88,8 +103,8 @@ function FetchForm({ selectedMethod }) {
             onChange={(e) => SetAuthenticationCredentials(e.target.value)}
             placeholder="Enter the authentication credentials!"
           />
-        </div>
-        <div className="request-body-container">
+        </div>)}
+        {showRequestBody && (<div className="request-body-container">
           <label htmlFor="request-body">Request Body:</label>
           <textarea
             name="request-body"
@@ -100,7 +115,7 @@ function FetchForm({ selectedMethod }) {
             cols="30"
             rows="10"
           />
-        </div>
+        </div>)}
         <div className="clear-btn-container">
           <button type="clear" onClick={handleClear}>
             Clear
