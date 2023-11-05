@@ -31,12 +31,6 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      {/* <div className="logo-container-header">
-        <h1 className="main-logo">
-        ref={logoRef} key={logoRef.current}
-          FETCH
-        </h1>
-        </div> */}
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/apitester" element={<ApiTester/>} />
