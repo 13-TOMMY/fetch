@@ -5,10 +5,11 @@ import ApiTester from "./pages/ApiTester";
 import Footer from './components/Footer'
 import Header from './components/Header'
 import './App.css'
+import { FC } from 'react';
 
 
 
-function App() {
+const App : FC = () => {
 
   return (
     <BrowserRouter>

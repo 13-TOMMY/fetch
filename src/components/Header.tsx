@@ -1,8 +1,8 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
 import "./Header.css";
+import { FC } from "react";
 
-
-function Header() {
+const Header: FC = () => {
   const location = useLocation();
   const isHomepage = location.pathname === "/";
   const isApiTester = location.pathname === "/apitester";
@@ -10,8 +10,8 @@ function Header() {
     <div className="container">
       <div className="nav-header">
         <div className="links-left">
-          <Link to={'/'}>Homepage</Link>
-          <Link href="#">Documentation</Link>
+          <Link to={"/"}>Homepage</Link>
+          <Link to="#">Documentation</Link>
           <a href="#">Github</a>
         </div>
         <div className="links-right">
@@ -20,6 +20,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;
