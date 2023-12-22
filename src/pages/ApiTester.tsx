@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import FetchForm from '../components/FetchForm';
 
-function ApiTester() {
-  const [apiCheckMethod, setApiCheckMethod] = useState('fetch');
+const ApiTester: FC = () => {
+  const [apiCheckMethod, setApiCheckMethod] = useState<'fetch' | 'axios' | 'query'>('fetch'););
 
-  const handleButtonClick = (method) => {
+  const handleButtonClick = (method: 'fetch' | 'axios' | 'query') => {
     setApiCheckMethod(method)
   }
   return (
