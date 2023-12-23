@@ -1,11 +1,18 @@
-import React from "react";
+import { FC, ReactNode } from "react";
 import FavouriteContextProvider from "./FavouriteContext";
-import { ThemeContext } from "./ThemeContext";
+import ThemeContextProvider, { ThemeContext } from "./ThemeContext";
 
-export default function CombinedContextProvider({ children }) {
-  return (
-    <FavouriteContextProvider>
-      <ThemeContext>{children}</ThemeContext>
-    </FavouriteContextProvider>
-  );
+interface CombinedContextProviderProps {
+  children: ReactNode;
 }
+
+const CombinedContextProvider: FC<CombinedContextProviderProps> = ({
+  children,
+}) => {
+  return (
+    <ThemeContextProvider>
+      <FavouriteContextProvider>{children}</FavouriteContextProvider>
+    </ThemeContextProvider>
+  );
+};
+export default CombinedContextProvider;
