@@ -1,10 +1,30 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, ReactNode, FC } from "react";
 
-export const FavouriteContext = createContext;
+interface FavouriteContextProviderProps {
+  children: ReactNode;
+}
 
-export default function FavouriteContextProvider({ children }) {
-  const [favourite, setFavourite] = useState([]);
-  const [favouriteCount, setFavouriteCount] = useState(0);
+interface FavouriteContextValue {
+  favourite: any[]; 
+  favouriteCount: number;
+  addToFavourite: (fetch: any) => void; 
+  removeFromFavourite: (fetchId: number) => void;
+  clearFavourite: () => void;
+}
+
+export const FavouriteContext = createContext<FavouriteContextValue>({
+  favourite: [],
+  favouriteCount: 0,
+  addToFavourite: () => {},
+  removeFromFavourite: () => {},
+  clearFavourite: () => {},
+});
+
+const FavouriteContextProvider: FC<FavouriteContextProviderProps> = ({
+  children,
+}) => {
+  const [favourite, setFavourite] = useState<any[]>([]); 
+  const [favouriteCount, setFavouriteCount] = useState<number>(0);
 
   useEffect(() => {
     const storedFavourite = localStorage.getItem("favourite");
@@ -19,12 +39,12 @@ export default function FavouriteContextProvider({ children }) {
     setFavouriteCount(favourite.length);
   }, [favourite]);
 
-  const addToFavourite = function (fetch) {
-    let newFavourite = [...favourite, fetch];
+  const addToFavourite = function (fetch: any) {
+    let newFavourite = [...favourite, fetch]; 
     setFavourite(newFavourite);
   };
 
-  const removeFromFavourite = (fetchId) => {
+  const removeFromFavourite = (fetchId: number) => {
     setFavourite((prevFavourite) =>
       prevFavourite.filter((favourite) => favourite.id !== fetchId)
     );
@@ -47,4 +67,6 @@ export default function FavouriteContextProvider({ children }) {
       {children}
     </FavouriteContext.Provider>
   );
-}
+};
+
+export default FavouriteContextProvider;
